@@ -1,0 +1,67 @@
+.app {
+  min-height: 100vh;
+  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background: #004aad;
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.card {
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 20px;
+}
+
+.box {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.box span {
+  display: block;
+  font-size: 16px;
+  margin-top: 10px;
+}
+/* Allineamento titolo Calendario */
+.sponsor-intro h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap; /* Se non c'è spazio sul telefono, manda l'emoji sotto ma senza coprire */
+}
+
+/* Gestione dell'emoji della palla da basket */
+.sponsor-intro h2 .title-emoji {
+  display: inline-block;
+  font-size: 2.2rem; /* Regola la grandezza dell'emoji */
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .sponsor-intro h2 {
+    font-size: 2rem; /* Rimpicciolisce leggermente il testo del titolo su mobile */
+  }
+}
