@@ -49,11 +49,20 @@ export default function Login() {
             ]);
 
           if (dbError) throw dbError;
-          setMessage('Registrazione completata! Ora puoi fare il login.');
-          setIsRegistering(false);
+          
+          // Login automatico immediato dopo la registrazione
+          const { error: loginError } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+          });
+          
+          if (loginError) throw loginError;
+          
+          // Vai alla card
+          navigate('/card');
         }
       } else {
-        // LOGIN
+        // LOGIN STANDARD
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -61,7 +70,6 @@ export default function Login() {
 
         if (error) throw error;
         
-        // Vai alla card se il login ha successo
         navigate('/card');
       }
     } catch (error) {
@@ -99,7 +107,37 @@ export default function Login() {
             <>
               <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
               <input type="text" placeholder="Cognome" value={cognome} onChange={(e) => setCognome(e.target.value)} required />
-              <input type="text" placeholder="Categoria (es. Under 17)" value={categoria} onChange={(e) => setCategoria(e.target.value)} required />
+              
+              <label style={{ textAlign: 'left', display: 'block', color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '4px' }}>
+                Categoria / Squadra del giocatore
+              </label>
+              <select 
+                value={categoria} 
+                onChange={(e) => setCategoria(e.target.value)} 
+                required
+                style={{
+                  padding: '12px 15px',
+                  background: 'var(--primary-blue)',
+                  border: '1px solid #3a506b',
+                  borderRadius: '6px',
+                  color: 'white',
+                  fontSize: '1rem',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  marginBottom: '10px'
+                }}
+              >
+                <option value="" disabled>Seleziona la squadra del giocatore...</option>
+                <option value="Minibasket">Minibasket 🧸</option>
+                <option value="Esordienti">Esordienti 🏀</option>
+                <option value="Under 13">Under 13 🏀</option>
+                <option value="Under 14">Under 14 🏀</option>
+                <option value="Under 15">Under 15 🏀</option>
+                <option value="Under 17">Under 17 ⚡</option>
+                <option value="Under 19">Under 19 ⚡</option>
+                <option value="Prima Squadra">Prima Squadra 🔥</option>
+                <option value="Staff / Allenatore">Staff / Allenatore 📋</option>
+              </select>
             </>
           )}
 

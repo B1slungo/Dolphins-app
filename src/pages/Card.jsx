@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../assets/logo.jpeg';
+import logo from '../assets/logo.png';
 import { QRCodeSVG } from 'qrcode.react';
 import { supabase } from '../supabaseClient'; // Importiamo il client di Supabase
 

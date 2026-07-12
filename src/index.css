@@ -60,7 +60,7 @@ code {
 /* ==========================================================================
    2. COMPONENTI RIUTILIZZABILI (LAYOUT & INTRO)
    ========================================================================== */
-.sponsor-page, .card-page, .login-page, .calendario-page {
+.sponsor-page, .card-page, .login-page, .calendario-page, .news-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -72,16 +72,22 @@ code {
   align-items: center;
   min-height: 70vh;
 }
-.sponsor-intro, .card-intro {
+.sponsor-intro, .card-intro, .news-intro {
   text-align: center;
   margin-bottom: 40px;
 }
-.sponsor-intro h2, .card-intro h2 {
+
+/* Gestione allineamento e margin-top per la pagina News */
+.news-intro {
+  margin-top: 40px;
+}
+
+.sponsor-intro h2, .card-intro h2, .news-intro h2 {
   font-size: 2.5rem;
   color: var(--accent-cyan);
   margin-bottom: 10px;
 }
-.sponsor-intro p, .card-intro p {
+.sponsor-intro p, .card-intro p, .news-intro p {
   color: var(--text-muted);
   font-size: 1.1rem;
   max-width: 700px;
@@ -189,7 +195,6 @@ code {
 
 .sponsor-grid {
   display: grid;
-  /* Sostituito auto-fit con auto-fill per gestire meglio le card quando sono poche */
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
   gap: 25px;
 }
@@ -201,12 +206,8 @@ code {
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  /* MODIFICATO: Cornice azzurra di default per gli Amici dei Dolphins */
   border: 2px solid var(--accent-cyan); 
-  /* Un leggero bagliore azzurro di sfondo */
   box-shadow: 0 4px 15px rgba(0, 180, 216, 0.05);
-
   max-width: 100%;
   overflow: hidden; 
   box-sizing: border-box;
@@ -216,19 +217,15 @@ code {
 
 .sponsor-card:hover {
   transform: translateY(-5px);
-  /* Un bagliore più intenso quando ci passi sopra */
   box-shadow: 0 10px 20px rgba(0, 180, 216, 0.25);
 }
 
 .sponsor-card.gold {
-  /* Sovrascrive la cornice azzurra con quella Oro */
   border: 2px solid #ffb703;
   background: linear-gradient(180deg, #1e293b 0%, #111827 100%);
-  /* Bagliore oro dedicato */
   box-shadow: 0 4px 20px rgba(255, 183, 3, 0.2);
 }
 
-/* CONTENITORE BIANCO PER I LOGHI: si adatta allo sfondo scuro */
 .sponsor-logo-container {
   width: 100%;
   height: 120px;
@@ -243,7 +240,6 @@ code {
   box-sizing: border-box;
 }
 
-/* REGOLA FERREA PER L'IMMAGINE DEL LOGO */
 .sponsor-logo-img {
   max-width: 100% !important;
   max-height: 100% !important;
@@ -277,7 +273,7 @@ code {
   font-size: 0.85rem;
   color: var(--text-dark);
   display: block;
-  margin-top: auto; /* Spinge l'indirizzo sempre in fondo alla card per tenerle allineate */
+  margin-top: auto;
 }
 
 /* ==========================================================================
@@ -757,3 +753,72 @@ code {
   }
 }
 
+/* ==========================================================================
+   10. SEZIONE NEWS
+   ========================================================================== */
+.news-card {
+  background: #1e293b;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.news-card:hover {
+  transform: scale(1.01);
+}
+
+.news-card.importante {
+  border: 2px solid #ef4444; 
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
+  background: linear-gradient(180deg, #1e293b 0%, #1a1625 100%);
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.news-categoria {
+  background: rgba(0, 180, 216, 0.15);
+  color: var(--accent-cyan);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.news-data {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.news-card h4 {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.news-contenuto {
+  color: #cbd5e1;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-line; 
+}
+
+.urgente-badge {
+  display: inline-block;
+  margin-top: 15px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
