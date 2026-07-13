@@ -314,6 +314,39 @@ code {
 /* ==========================================================================
    5. PAGINA CARD DIGITALE
    ========================================================================== */
+
+.card-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
+.card-page-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+  color: var(--accent-cyan);
+  /* O il colore azzurro che usi nel tema */
+  margin: 0;
+}
+
+.card-title-emoji {
+  display: inline-block;
+  line-height: 1;
+}
+
+.card-page-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
 .card-container {
   display: flex;
   justify-content: center;
@@ -522,7 +555,8 @@ code {
 }
 
 .password-container input {
-  padding-right: 45px; /* Spazio a destra per non far sovrapporre i pallini all'occhio */
+  padding-right: 45px;
+  /* Spazio a destra per non far sovrapporre i pallini all'occhio */
 }
 
 /* Bottone dell'occhio sopra l'input */
@@ -538,12 +572,14 @@ code {
   font-size: 1.2rem;
   padding: 5px;
   display: flex;
-  align-items: center; /* Corretto da camelCase a sintassi CSS standard */
+  align-items: center;
+  /* Corretto da camelCase a sintassi CSS standard */
   justify-content: center;
 }
 
 .toggle-password-btn:hover {
-  color: var(--accent-cyan); /* Usa la variabile del tuo tema invece dell'hex fisso */
+  color: var(--accent-cyan);
+  /* Usa la variabile del tuo tema invece dell'hex fisso */
 }
 
 /* Pulsante principale di invio form */

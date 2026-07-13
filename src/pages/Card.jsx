@@ -57,11 +57,12 @@ export default function Card() {
   return (
     <div className="card-page">
 
-      <div className="card-intro" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', width: '100%' }}>
+      <div className="card-page-header">
+        <h2 className="card-page-title">
           <span>La mia Card Digitale</span>
+          <span className="card-title-emoji">💳</span>
         </h2>
-        <p>Mostra questa tessera nei punti vendita convenzionati per ricevere istantaneamente i tuoi sconti dedicati.</p>
+        <p className="card-page-subtitle">Mostra questa tessera nei punti vendita convenzionati per ricevere istantaneamente i tuoi sconti dedicati.</p>
       </div>
 
       <div className="card-container">
