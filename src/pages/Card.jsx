@@ -8,43 +8,43 @@ export default function Card() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  async function caricaDatiAtleta() {
-    try {
-      setLoading(true);
-      
-      // 1. Chiediamo a Supabase chi è l'utente attualmente loggato
-      const { data: { user }, error: authError } = await supabase.auth.getUser();
+    async function caricaDatiAtleta() {
+      try {
+        setLoading(true);
 
-      if (authError) throw authError;
+        // 1. Chiediamo a Supabase chi è l'utente attualmente loggato
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
 
-      if (!user) {
-        // Se non c'è nessun utente loggato, rimandiamo alla pagina di login
-        console.log("Nessun utente loggato");
+        if (authError) throw authError;
+
+        if (!user) {
+          // Se non c'è nessun utente loggato, rimandiamo alla pagina di login
+          console.log("Nessun utente loggato");
+          setLoading(false);
+          return;
+        }
+
+        // 2. Usiamo l'ID dell'utente loggato per scaricare i dati della sua tessera
+        let { data, error: dbError } = await supabase
+          .from('atleti')
+          .select('*')
+          .eq('id', user.id) // ID dinamico!
+          .maybeSingle();
+
+        if (dbError) throw dbError;
+
+        if (data) {
+          setAtleta(data);
+        }
+      } catch (error) {
+        console.error("Errore nel caricamento:", error.message);
+      } finally {
         setLoading(false);
-        return;
       }
-
-      // 2. Usiamo l'ID dell'utente loggato per scaricare i dati della sua tessera
-      let { data, error: dbError } = await supabase
-        .from('atleti')
-        .select('*')
-        .eq('id', user.id) // ID dinamico!
-        .maybeSingle();
-
-      if (dbError) throw dbError;
-      
-      if (data) {
-        setAtleta(data);
-      }
-    } catch (error) {
-      console.error("Errore nel caricamento:", error.message);
-    } finally {
-      setLoading(false);
     }
-  }
 
-  caricaDatiAtleta();
-}, []);
+    caricaDatiAtleta();
+  }, []);
 
   if (loading) {
     return <div style={{ color: '#fff', textAlign: 'center', marginTop: '50px' }}>Caricamento tessera digitale...</div>;
@@ -56,15 +56,18 @@ export default function Card() {
 
   return (
     <div className="card-page">
-      <div className="card-intro">
-        <h2>La mia Card Digitale</h2>
+
+      <div className="card-intro" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', width: '100%' }}>
+          <span>La mia Card Digitale</span>
+        </h2>
         <p>Mostra questa tessera nei punti vendita convenzionati per ricevere istantaneamente i tuoi sconti dedicati.</p>
       </div>
 
       <div className="card-container">
         <div className="dolphins-digital-card">
           <div className="card-overlay"></div>
-          
+
           <div className="card-header-tessera">
             <div className="card-brand-info">
               <img src={logo} alt="logo" className="card-logo-img" />
@@ -99,9 +102,9 @@ export default function Card() {
               <label>NUMERO TESSERA</label>
               <span>{atleta.numero_tessera}</span>
             </div>
-            
+
             <div className="real-qrcode-container">
-              <QRCodeSVG 
+              <QRCodeSVG
                 value={atleta.numero_tessera}
                 size={45}
                 bgColor={"#ffffff"}

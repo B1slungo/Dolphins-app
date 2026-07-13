@@ -8,7 +8,7 @@ export default function Header() {
         <img src={logo} alt="logo.png" className="header-logo" />
         <h1>Dolphins Riccione</h1>
       </div>
-      
+
       <nav className="header-nav">
         <ul>
           <li><NavLink to="/" end className={({ isActive }) => isActive ? 'active-link' : ''}>🏠 Home</NavLink></li>

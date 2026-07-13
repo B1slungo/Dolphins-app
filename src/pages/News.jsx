@@ -34,10 +34,14 @@ export default function News() {
 
   return (
     <div className="news-page">
-        <div className="news-intro">
-        <h2>Dolphins News 📰</h2>
+      {/* INTRODUZIONE GENERALE DELLA PAGINA (VERSIONE CALENDARIO) */}
+      <div className="news-intro" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', width: '100%' }}>
+          <span>Dolphins News </span>
+          <span style={{ display: 'inline-block', lineHeight: '1' }}>📰</span>
+        </h2>
         <p>Rimani sempre aggiornato su eventi, comunicati ufficiali e novità del mondo Dolphins Riccione.</p>
-        </div>
+      </div>
 
       <div className="news-grid" style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '800px', margin: '0 auto', textAlign: 'left' }}>
         {notizie.length === 0 ? (
@@ -46,17 +50,17 @@ export default function News() {
           notizie.map((articolo) => {
             // Formattiamo la data in formato italiano (GG/MM/AAAA)
             const dataFormattata = new Date(articolo.data_pubblicazione).toLocaleDateString('it-IT');
-            
+
             return (
               <div key={articolo.id} className={`news-card ${articolo.importante ? 'importante' : ''}`}>
                 <div className="news-header">
                   <span className="news-categoria">{articolo.categoria || 'Avviso'}</span>
                   <span className="news-data">📅 {dataFormattata}</span>
                 </div>
-                
+
                 <h4>{articolo.titolo}</h4>
                 <p className="news-contenuto">{articolo.contenuto}</p>
-                
+
                 {articolo.importante && (
                   <div className="urgente-badge">⚠️ Comunicazione Importante</div>
                 )}

@@ -44,33 +44,39 @@
   font-size: 16px;
   margin-top: 10px;
 }
+
 /* Allineamento titolo Calendario */
 .sponsor-intro h2 {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  flex-wrap: wrap; /* Se non c'è spazio sul telefono, manda l'emoji sotto ma senza coprire */
+  flex-wrap: wrap;
+  /* Se non c'è spazio sul telefono, manda l'emoji sotto ma senza coprire */
 }
 
 /* Gestione dell'emoji della palla da basket */
 .sponsor-intro h2 .title-emoji {
   display: inline-block;
-  font-size: 2.2rem; /* Regola la grandezza dell'emoji */
+  font-size: 2.2rem;
+  /* Regola la grandezza dell'emoji */
   line-height: 1;
 }
 
 @media (max-width: 768px) {
   .sponsor-intro h2 {
-    font-size: 2rem; /* Rimpicciolisce leggermente il testo del titolo su mobile */
+    font-size: 2rem;
+    /* Rimpicciolisce leggermente il testo del titolo su mobile */
   }
 }
+
 /* --- GRIGLIA E STRUTTURA DELLE CARD SPONSOR --- */
 
 /* Forza la pagina ad avere uno sfondo scuro coerente con il resto dell'app */
 .sponsor-page {
   padding: 20px;
-  background: #0f172a; /* Colore scuro protettivo di sfondo */
+  background: #0f172a;
+  /* Colore scuro protettivo di sfondo */
   min-height: 100vh;
 }
 
@@ -86,7 +92,8 @@
 
 /* Struttura base della card per non farla deformare o allargare */
 .sponsor-card {
-  background: #1e293b; /* Sfondo scuro interno alla card */
+  background: #1e293b;
+  /* Sfondo scuro interno alla card */
   border: 1px solid #334155;
   border-radius: 12px;
   padding: 20px;
@@ -96,7 +103,8 @@
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  overflow: hidden; /* Taglia via qualsiasi sbrodolamento */
+  overflow: hidden;
+  /* Taglia via qualsiasi sbrodolamento */
 }
 
 /* Stile per i testi interni alle card */

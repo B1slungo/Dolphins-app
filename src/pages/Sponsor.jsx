@@ -30,78 +30,92 @@ export default function Sponsor() {
   }
 
   // Ora usiamo il nome corretto della colonna: is_gold
-const sponsorGold = sponsor.filter(s => s.is_gold === true || s.is_gold === 'true' || s.is_gold === 1);
-const sponsorStandard = sponsor.filter(s => !s.is_gold || s.is_gold === false || s.is_gold === 'false' || s.is_gold === 0);
+  const sponsorGold = sponsor.filter(s => s.is_gold === true || s.is_gold === 'true' || s.is_gold === 1);
+  const sponsorStandard = sponsor.filter(s => !s.is_gold || s.is_gold === false || s.is_gold === 'false' || s.is_gold === 0);
 
   return (
     <div className="sponsor-page">
       {/* INTRODUZIONE GENERALE DELLA PAGINA */}
-      <div className="sponsor-intro">
-        <h2>I Nostri Partner 🐬</h2>
+      <div className="sponsor-intro" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', width: '100%' }}>
+          <span>I Nostri Partner</span>
+          <span style={{ display: 'inline-block', lineHeight: '1' }}>🐬</span>
+        </h2>
         <p>Mostra la tua Card Digitale in queste attività di Riccione per ricevere sconti e vantaggi esclusivi!</p>
       </div>
 
       {/* ================= SEZIONE MAIN SPONSOR ================= */}
       <div className="sponsor-section" style={{ marginBottom: '50px' }}>
         <div className="section-title-wrapper">
-          <span className="emoji-badge">⭐</span>
-          <h3>Main Sponsor</h3>
+          <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', flexWrap: 'wrap' }}>
+            <span style={{ display: 'inline-block', lineHeight: '1' }}>⭐</span>
+            <span>Main Sponsor</span>
+          </h3>
         </div>
         <p className="section-subtitle">I partner principali che sostengono il progetto Dolphins con massima energia.</p>
-        
-        <div className="sponsor-grid">
-          {sponsorGold.length === 0 ? (
-            <p style={{ color: '#64748b', gridColumn: '1/-1' }}>Nessun main sponsor presente.</p>
-          ) : (
-            sponsorGold.map((s) => (
-              <div key={s.id} className="sponsor-card gold">
-                <div className="sponsor-logo-container">
-                  {s.logo_url ? (
-                    <img src={s.logo_url} alt={s.nome} className="sponsor-logo-img" />
-                  ) : (
-                    <span className="sponsor-default-emoji">🏢</span>
-                  )}
-                </div>
-                <h4>{s.nome}</h4>
-                {s.sconto && <div className="discount-tag">{s.sconto}</div>}
-                {s.descrizione && <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '10px 0' }}>{s.descrizione}</p>}
-                {s.indirizzo && <span className="sponsor-address">📍 {s.indirizzo}</span>}
+
+        {/* ... qui sotto rimane il tuo ciclo sponsorGold.map ... */}
+      </div>
+
+
+
+      <div className="sponsor-grid">
+        {sponsorGold.length === 0 ? (
+          <p style={{ color: '#64748b', gridColumn: '1/-1' }}>Nessun main sponsor presente.</p>
+        ) : (
+          sponsorGold.map((s) => (
+            <div key={s.id} className="sponsor-card gold">
+              <div className="sponsor-logo-container">
+                {s.logo_url ? (
+                  <img src={s.logo_url} alt={s.nome} className="sponsor-logo-img" />
+                ) : (
+                  <span className="sponsor-default-emoji">🏢</span>
+                )}
               </div>
-            ))
-          )}
-        </div>
+              <h4>{s.nome}</h4>
+              {s.sconto && <div className="discount-tag">{s.sconto}</div>}
+              {s.descrizione && <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '10px 0' }}>{s.descrizione}</p>}
+              {s.indirizzo && <span className="sponsor-address">📍 {s.indirizzo}</span>}
+            </div>
+          ))
+        )}
       </div>
 
       {/* ================= SEZIONE AMICI DEI DOLPHINS ================= */}
       <div className="sponsor-section">
         <div className="section-title-wrapper">
-          <span className="emoji-badge">💙</span>
-          <h3>Amici dei Dolphins 🤍</h3>
+          <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', flexWrap: 'wrap' }}>
+            <span style={{ display: 'inline-block', lineHeight: '1' }}>💙</span>
+            <span>Amici dei Dolphins</span>
+            <span style={{ display: 'inline-block', lineHeight: '1' }}>🤍</span>
+          </h3>
         </div>
         <p className="section-subtitle">Le attività del territorio che offrono vantaggi esclusivi ai nostri tesserati.</p>
-        
-        <div className="sponsor-grid">
-          {sponsorStandard.length === 0 ? (
-            <p style={{ color: '#64748b', gridColumn: '1/-1' }}>Nessun partner standard presente.</p>
-          ) : (
-            sponsorStandard.map((s) => (
-              <div key={s.id} className="sponsor-card">
-                <div className="sponsor-logo-container">
-                  {s.logo_url ? (
-                    <img src={s.logo_url} alt={s.nome} className="sponsor-logo-img" />
-                  ) : (
-                    <span className="sponsor-default-emoji">🏢</span>
-                  )}
-                </div>
-                <h4>{s.nome}</h4>
-                {s.sconto && <div className="discount-tag">{s.sconto}</div>}
-                {s.descrizione && <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '10px 0' }}>{s.descrizione}</p>}
-                {s.indirizzo && <span className="sponsor-address">📍 {s.indirizzo}</span>}
-              </div>
-            ))
-          )}
-        </div>
+
+        {/* ... qui sotto rimane il tuo ciclo sponsorStandard.map ... */}
       </div>
-    </div>
+
+      <div className="sponsor-grid">
+        {sponsorStandard.length === 0 ? (
+          <p style={{ color: '#64748b', gridColumn: '1/-1' }}>Nessun partner standard presente.</p>
+        ) : (
+          sponsorStandard.map((s) => (
+            <div key={s.id} className="sponsor-card">
+              <div className="sponsor-logo-container">
+                {s.logo_url ? (
+                  <img src={s.logo_url} alt={s.nome} className="sponsor-logo-img" />
+                ) : (
+                  <span className="sponsor-default-emoji">🏢</span>
+                )}
+              </div>
+              <h4>{s.nome}</h4>
+              {s.sconto && <div className="discount-tag">{s.sconto}</div>}
+              {s.descrizione && <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '10px 0' }}>{s.descrizione}</p>}
+              {s.indirizzo && <span className="sponsor-address">📍 {s.indirizzo}</span>}
+            </div>
+          ))
+        )}
+      </div>
+    </div >
   );
 }

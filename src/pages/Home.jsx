@@ -12,7 +12,7 @@ export default function Home() {
           <span className="hero-badge">Dolphins Riccione Basket 🐬</span>
           <h2>La famiglia dei Dolphins sul tuo Smartphone</h2>
           <p>
-            Accedi per mostrare la tua tessera digitale ai partner ufficiali, 
+            Accedi per mostrare la tua tessera digitale ai partner ufficiali,
             scopri gli sconti dedicati e resta aggiornato sulla stagione.
           </p>
           <div className="hero-buttons">
@@ -44,6 +44,12 @@ export default function Home() {
           <div className="feature-icon">🏀</div>
           <h3>Calendario Gare</h3>
           <p>Controlla quando giocano le nostre squadre, dagli Aquilotti fino alla Prima Squadra.</p>
+        </div>
+
+        <div className="feature-card" onClick={() => navigate('/news')}>
+          <div className="feature-icon">📰</div>
+          <h3>Comunicati & Novità</h3>
+          <p>Rimani sempre aggiornato su eventi, comunicati ufficiali e novità del mondo Dolphins Riccione.</p>
         </div>
       </section>
     </div>

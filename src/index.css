@@ -14,17 +14,21 @@
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  background: #16171d; 
+  background: #16171d;
   color: #ffffff;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
 @media (max-width: 1024px) {
-  :root { font-size: 16px; }
+  :root {
+    font-size: 16px;
+  }
 }
 
-body { margin: 0; }
+body {
+  margin: 0;
+}
 
 #root {
   width: 100%;
@@ -37,14 +41,19 @@ body { margin: 0; }
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--sans);
   font-weight: 500;
   color: #ffffff;
   margin: 0;
 }
 
-p { margin: 0; }
+p {
+  margin: 0;
+}
 
 code {
   font-family: var(--mono);
@@ -60,7 +69,11 @@ code {
 /* ==========================================================================
    2. COMPONENTI RIUTILIZZABILI (LAYOUT & INTRO)
    ========================================================================== */
-.sponsor-page, .card-page, .login-page, .calendario-page, .news-page {
+.sponsor-page,
+.card-page,
+.login-page,
+.calendario-page,
+.news-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -72,7 +85,10 @@ code {
   align-items: center;
   min-height: 70vh;
 }
-.sponsor-intro, .card-intro, .news-intro {
+
+.sponsor-intro,
+.card-intro,
+.news-intro {
   text-align: center;
   margin-bottom: 40px;
 }
@@ -82,12 +98,17 @@ code {
   margin-top: 40px;
 }
 
-.sponsor-intro h2, .card-intro h2, .news-intro h2 {
+.sponsor-intro h2,
+.card-intro h2,
+.news-intro h2 {
   font-size: 2.5rem;
   color: var(--accent-cyan);
   margin-bottom: 10px;
 }
-.sponsor-intro p, .card-intro p, .news-intro p {
+
+.sponsor-intro p,
+.card-intro p,
+.news-intro p {
   color: var(--text-muted);
   font-size: 1.1rem;
   max-width: 700px;
@@ -104,6 +125,7 @@ code {
   font-weight: bold;
   border-radius: 8px;
 }
+
 .logo-placeholder-small {
   background: #334155;
   height: 80px;
@@ -133,11 +155,13 @@ code {
   align-items: center;
   gap: 12px;
 }
+
 .header-brand h1 {
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
+
 .header-logo {
   height: 45px;
   width: auto;
@@ -150,6 +174,7 @@ code {
   gap: 20px;
   padding: 0;
 }
+
 .header-nav a {
   color: #e0e1dd;
   text-decoration: none;
@@ -159,10 +184,12 @@ code {
   border-radius: 6px;
   transition: all 0.3s ease;
 }
+
 .header-nav a:hover {
   background-color: rgba(0, 180, 216, 0.15);
   color: var(--accent-cyan);
 }
+
 .header-nav a.active-link {
   background-color: var(--accent-cyan);
   color: #ffffff;
@@ -173,7 +200,9 @@ code {
 /* ==========================================================================
    4. PAGINA SPONSOR
    ========================================================================== */
-.sponsor-section { margin-bottom: 60px; }
+.sponsor-section {
+  margin-bottom: 60px;
+}
 
 .section-title-wrapper {
   display: flex;
@@ -183,8 +212,14 @@ code {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 10px;
 }
-.emoji-badge { font-size: 1.8rem; }
-.sponsor-section h3 { font-size: 1.8rem; }
+
+.emoji-badge {
+  font-size: 1.8rem;
+}
+
+.sponsor-section h3 {
+  font-size: 1.8rem;
+}
 
 .section-subtitle {
   color: var(--accent-cyan);
@@ -195,7 +230,7 @@ code {
 
 .sponsor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 25px;
 }
 
@@ -206,10 +241,10 @@ code {
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 2px solid var(--accent-cyan); 
+  border: 2px solid var(--accent-cyan);
   box-shadow: 0 4px 15px rgba(0, 180, 216, 0.05);
   max-width: 100%;
-  overflow: hidden; 
+  overflow: hidden;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -232,7 +267,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff; 
+  background: #ffffff;
   border-radius: 8px;
   margin-bottom: 15px;
   overflow: hidden;
@@ -303,7 +338,10 @@ code {
 
 .card-overlay {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.15) 0%, transparent 50%);
   pointer-events: none;
 }
@@ -314,25 +352,30 @@ code {
   align-items: flex-start;
   z-index: 1;
 }
+
 .card-brand-info {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
 .card-logo-img {
   height: 40px;
   width: auto;
 }
+
 .card-brand-info h3 {
   font-size: 1.1rem;
   letter-spacing: 1px;
   font-weight: 800;
 }
+
 .card-brand-info span {
   font-size: 0.7rem;
   color: var(--accent-cyan);
   display: block;
 }
+
 .card-badge-status {
   background: var(--success);
   color: var(--primary-blue);
@@ -347,7 +390,11 @@ code {
   margin-top: 15px;
   z-index: 1;
 }
-.data-group { margin-bottom: 12px; }
+
+.data-group {
+  margin-bottom: 12px;
+}
+
 .data-group label {
   display: block;
   font-size: 0.6rem;
@@ -355,15 +402,18 @@ code {
   letter-spacing: 1px;
   margin-bottom: 2px;
 }
+
 .data-value {
   font-size: 1.4rem;
   font-weight: 700;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
+
 .card-row-double {
   display: flex;
   gap: 40px;
 }
+
 .data-value-small {
   font-size: 0.95rem;
   font-weight: 600;
@@ -378,12 +428,14 @@ code {
   padding-top: 10px;
   z-index: 1;
 }
+
 .tessera-number label {
   display: block;
   font-size: 0.55rem;
   color: var(--text-dark);
   letter-spacing: 1px;
 }
+
 .tessera-number span {
   font-family: var(--mono);
   font-size: 0.95rem;
@@ -401,7 +453,10 @@ code {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
 }
-.real-qrcode-container:hover { transform: scale(1.1); }
+
+.real-qrcode-container:hover {
+  transform: scale(1.1);
+}
 
 .card-instructions {
   text-align: center;
@@ -417,16 +472,18 @@ code {
   background: var(--dark-blue);
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(0, 180, 216, 0.2);
   width: 100%;
   max-width: 400px;
   text-align: center;
 }
+
 .login-box h2 {
   color: var(--accent-cyan);
   margin-bottom: 10px;
 }
+
 .login-box p {
   color: var(--text-muted);
   font-size: 0.9rem;
@@ -438,7 +495,12 @@ code {
   flex-direction: column;
   gap: 15px;
 }
-.login-form input {
+
+/* Input generali e allineamento ereditato per il box password */
+.login-form input,
+.password-container input {
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px 15px;
   background: var(--primary-blue);
   border: 1px solid #3a506b;
@@ -446,11 +508,46 @@ code {
   color: white;
   font-size: 1rem;
 }
-.login-form input:focus {
+
+.login-form input:focus,
+.password-container input:focus {
   outline: none;
   border-color: var(--accent-cyan);
 }
-.login-form button {
+
+/* Contenitore specifico per l'input password + occhietto */
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  padding-right: 45px; /* Spazio a destra per non far sovrapporre i pallini all'occhio */
+}
+
+/* Bottone dell'occhio sopra l'input */
+.toggle-password-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+  display: flex;
+  align-items: center; /* Corretto da camelCase a sintassi CSS standard */
+  justify-content: center;
+}
+
+.toggle-password-btn:hover {
+  color: var(--accent-cyan); /* Usa la variabile del tuo tema invece dell'hex fisso */
+}
+
+/* Pulsante principale di invio form */
+.login-form button[type="submit"] {
   padding: 12px;
   background: var(--accent-cyan);
   color: var(--primary-blue);
@@ -460,8 +557,10 @@ code {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s;
+  width: 100%;
 }
-.login-form button:hover {
+
+.login-form button[type="submit"]:hover {
   background: var(--accent-cyan-hover);
 }
 
@@ -480,6 +579,7 @@ code {
   font-size: 0.85rem;
   text-decoration: underline;
 }
+
 .switch-btn:hover {
   color: var(--accent-cyan);
 }
@@ -535,7 +635,8 @@ code {
   gap: 15px;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   padding: 14px 28px;
   border-radius: 8px;
   font-size: 1rem;
@@ -549,6 +650,7 @@ code {
   color: var(--primary-blue);
   border: none;
 }
+
 .btn-primary:hover {
   background: var(--accent-cyan-hover);
   transform: translateY(-2px);
@@ -559,6 +661,7 @@ code {
   color: #ffffff;
   border: 2px solid #3a506b;
 }
+
 .btn-secondary:hover {
   border-color: var(--accent-cyan);
   background: rgba(0, 180, 216, 0.05);
@@ -692,6 +795,37 @@ code {
   text-align: left;
 }
 
+.match-status-or-score {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.match-not-played {
+  font-size: 0.85rem;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.partita-risultato {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #00d2ff;
+  margin-bottom: 5px;
+}
+
+.match-vs-text {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #EE6730;
+}
+
 /* ==========================================================================
    9. OTTIMIZZAZIONE RESPONSIVE (MOBILE)
    ========================================================================== */
@@ -701,7 +835,7 @@ code {
     gap: 15px;
     padding: 15px;
   }
-  
+
   .header-nav ul {
     gap: 10px;
     flex-wrap: wrap;
@@ -771,7 +905,7 @@ code {
 }
 
 .news-card.importante {
-  border: 2px solid #ef4444; 
+  border: 2px solid #ef4444;
   box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
   background: linear-gradient(180deg, #1e293b 0%, #1a1625 100%);
 }
@@ -809,7 +943,7 @@ code {
   color: #cbd5e1;
   font-size: 1rem;
   line-height: 1.5;
-  white-space: pre-line; 
+  white-space: pre-line;
 }
 
 .urgente-badge {
@@ -821,4 +955,89 @@ code {
   border-radius: 6px;
   font-weight: bold;
   font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   11. PAGINA ADMIN
+   ========================================================================== */
+.admin-page {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  min-height: 80vh;
+}
+
+.admin-box {
+  width: 100%;
+  max-width: 500px;
+  background: #1a2536;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  background: #2d3d54;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.tab-btn.active {
+  background: #00c6ff;
+  color: white;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.admin-form label {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: -4px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  padding: 12px;
+  background: #2d3d54;
+  border: 1px solid #3a506b;
+  border-radius: 6px;
+  color: white;
+  font-size: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row>div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-message {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
 }

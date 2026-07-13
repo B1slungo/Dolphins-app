@@ -32,10 +32,10 @@ export default function Calendario() {
 
   return (
     <div className="calendario-page">
-      <div className="sponsor-intro" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div className="calendar-intro" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h2 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', width: '100%' }}>
-        <span>Calendario Gare</span> 
-        <span style={{ display: 'inline-block', lineHeight: '1' }}>🏀</span>
+          <span>Calendario Gare</span>
+          <span style={{ display: 'inline-block', lineHeight: '1' }}>🏀</span>
         </h2>
         <p>Resta aggiornato sui match di tutte le categorie dei Dolphins Riccione</p>
       </div>
@@ -49,19 +49,22 @@ export default function Calendario() {
               <div className="partita-header">
                 <span className="partita-categoria">{partita.categoria}</span>
                 <span className="partita-data">
-                    {partita.data_ora ? partita.data_ora.replace('T', ' ').substring(0, 16) : ''} </span>
+                  {partita.data_ora ? partita.data_ora.replace('T', ' ').substring(0, 16) : ''} </span>
               </div>
-              
-              <div className="partita-body">
-                <div className="squadra-nome">{partita.squadra_home}</div>
-                <div className="partita-risultato">
-                  {partita.risultato && partita.risultato !== '-' ? (
-                    <span className="score-badge">{partita.risultato}</span>
-                  ) : (
-                    <span className="vs-badge">VS</span>
-                  )}
-                </div>
-                <div className="squadra-nome">{partita.squadra_guest}</div>
+
+              {/* CONTROLLO DINAMICO CON UN UNICO CAMPO RISULTATO (PULITO) */}
+              <div className="match-status-or-score">
+                {(!partita.risultato || partita.risultato.trim() === '') ? (
+                  <div className="match-not-played">
+                    Partita ancora non disputata
+                  </div>
+                ) : (
+                  <div className="partita-risultato">
+                    {partita.risultato}
+                  </div>
+                )}
+
+                <div className="match-vs-text">VS</div>
               </div>
 
               <div className="partita-footer">

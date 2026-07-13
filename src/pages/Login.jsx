@@ -7,12 +7,14 @@ export default function Login() {
   const [isRegistering, setIsRegistering] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
+  const [showPassword, setShowPassword] = useState(false);
+
   // Campi aggiuntivi per la registrazione dell'atleta
   const [nome, setNome] = useState('');
   const [cognome, setCognome] = useState('');
   const [categoria, setCategoria] = useState('');
-  
+
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -35,7 +37,7 @@ export default function Login() {
         if (authData?.user) {
           // CREA IL PROFILO NELLA TABELLA ATLETI
           const numeroTesseraCasuale = `DBR-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-          
+
           const { error: dbError } = await supabase
             .from('atleti')
             .insert([
@@ -49,15 +51,15 @@ export default function Login() {
             ]);
 
           if (dbError) throw dbError;
-          
+
           // Login automatico immediato dopo la registrazione
           const { error: loginError } = await supabase.auth.signInWithPassword({
             email,
             password,
           });
-          
+
           if (loginError) throw loginError;
-          
+
           // Vai alla card
           navigate('/card');
         }
@@ -69,7 +71,7 @@ export default function Login() {
         });
 
         if (error) throw error;
-        
+
         navigate('/card');
       }
     } catch (error) {
@@ -107,13 +109,13 @@ export default function Login() {
             <>
               <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
               <input type="text" placeholder="Cognome" value={cognome} onChange={(e) => setCognome(e.target.value)} required />
-              
+
               <label style={{ textAlign: 'left', display: 'block', color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '4px' }}>
                 Categoria / Squadra del giocatore
               </label>
-              <select 
-                value={categoria} 
-                onChange={(e) => setCategoria(e.target.value)} 
+              <select
+                value={categoria}
+                onChange={(e) => setCategoria(e.target.value)}
                 required
                 style={{
                   padding: '12px 15px',
@@ -142,7 +144,25 @@ export default function Login() {
           )}
 
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="toggle-password-btn"
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? "Nascondi password" : "Mostra password"}
+            >
+              <span style={{ display: 'inline-block', lineHeight: '1' }}>
+                {showPassword ? "👀" : "🔒"}
+              </span>
+            </button>
+          </div>
 
           <button type="submit" disabled={loading}>
             {loading ? 'Elaborazione...' : isRegistering ? 'Registrati' : 'Accedi'}
