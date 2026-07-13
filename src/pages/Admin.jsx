@@ -3,7 +3,7 @@ import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
 // Inserisci qui l'email (o le email) autorizzate ad accedere al pannello
-const EMAILS_AUTORIZZATE = ['isaacvillaa4@gmail.com', 'altrastaff@dolphins.it']; 
+const EMAILS_AUTORIZZATE = ['isaacvillaa4@gmail.com', 'barosi85@libero.it','altrastaff@dolphins.it']; 
 
 export default function Admin() {
   const navigate = useNavigate();
