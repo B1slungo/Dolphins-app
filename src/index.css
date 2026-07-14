@@ -992,6 +992,12 @@ code {
   color: white;
   padding: 10px;
 }
+.partita-teams-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
 
 /* ==========================================================================
    9. OTTIMIZZAZIONE RESPONSIVE (MOBILE)
@@ -1052,7 +1058,38 @@ code {
   .partita-risultato {
     padding: 5px 0;
   }
+  .partita-teams-line {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .team-home,
+  .team-guest {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .match-status-or-score {
+    order: 2;
+  }
+
+  .team-home {
+    order: 1;
+  }
+
+  .team-guest {
+    order: 3;
+  }
+
+  .match-vs-text {
+    margin-top: 8px;
+    font-size: 1.4rem;
+  }
 }
+
 
 /* ==========================================================================
    10. SEZIONE NEWS
