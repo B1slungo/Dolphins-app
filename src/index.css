@@ -743,123 +743,254 @@ code {
 }
 
 /* ==========================================================================
-   8. PAGINA CALENDARIO
+   SCHERMATA CALENDARIO GARE
    ========================================================================== */
+
+/* Layout generale della pagina */
+.calendario-page {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calendario-loading {
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.1rem;
+}
+
+/* Intestazione pagina */
+.calendar-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.calendar-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 0 8px 0;
+}
+
+.calendar-title-emoji {
+  display: inline-block;
+  line-height: 1;
+}
+
+.calendar-subtitle {
+  color: var(--text-muted, #94a3b8);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Lista card */
 .partite-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 30px;
 }
 
+.no-matches {
+  color: #64748b;
+  text-align: center;
+}
+
+/* Card del singolo match */
 .partita-card {
-  background: #1e293b;
-  border: 1px solid rgba(0, 180, 216, 0.15);
+  background: var(--dark-blue, #1a2536);
+  border: 1px solid rgba(0, 180, 216, 0.2);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.partita-card:hover {
-  transform: scale(1.01);
-  border-color: var(--accent-cyan);
-}
-
+/* Intestazione interna alla card */
 .partita-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding-bottom: 10px;
-  margin-bottom: 15px;
-  font-size: 0.85rem;
 }
 
 .partita-categoria {
-  background: rgba(0, 180, 216, 0.15);
-  color: var(--accent-cyan);
+  background: var(--accent-cyan, #00c6ff);
+  color: var(--primary-blue, #0f172a);
   padding: 4px 10px;
-  border-radius: 6px;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 20px;
+  text-transform: uppercase;
 }
 
 .partita-data {
-  color: var(--text-muted);
-}
-
-.partita-body {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0;
-}
-
-.squadra-nome {
-  font-size: 1.2rem;
-  font-weight: bold;
-  flex: 1;
-  color: #ffffff;
-}
-
-.partita-risultato {
-  padding: 0 20px;
-}
-
-.vs-badge {
-  background: #334155;
-  color: var(--text-muted);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.score-badge {
-  background: var(--accent-cyan);
-  color: var(--primary-blue);
-  padding: 6px 16px;
-  border-radius: 6px;
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-}
-
-.partita-footer {
-  margin-top: 15px;
+  color: var(--text-muted, #94a3b8);
   font-size: 0.85rem;
-  color: var(--text-dark);
-  text-align: left;
 }
 
+/* RIGALINEA SQUADRE: 
+   Utilizziamo una tabella CSS simmetrica a 3 colonne 
+   per posizionare i nomi esattamente a metà spazio */
+.partita-teams-line {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Forza le tre colonne a rispettare i limiti senza allargarsi */
+  margin: 15px 0;
+}
+
+/* Ciascuno dei 3 blocchi (Squadra Home, VS/Punteggio, Squadra Guest) */
+.partita-team, 
 .match-status-or-score {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* Nome delle squadre */
+.partita-team {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  word-wrap: break-word;
+}
+
+/* Allineamenti strategici per spingere i testi "a metà strada" */
+.team-home {
+  text-align: right;
+  padding-right: 25px; /* Crea una spaziatura d'aria perfetta rispetto al centro */
+}
+
+.team-guest {
+  text-align: left;
+  padding-left: 25px; /* Crea una spaziatura d'aria perfetta rispetto al centro */
+}
+
+/* Blocco centrale del VS o punteggio */
+.match-status-or-score {
+  width: 140px; /* Larghezza controllata per dare stabilità al centro */
   text-align: center;
-  margin: 10px 0;
 }
 
 .match-not-played {
-  font-size: 0.85rem;
-  color: #e2e8f0;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 4px 8px;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 6px;
   border-radius: 4px;
-  display: inline-block;
-  margin-bottom: 5px;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: 4px;
 }
 
 .partita-risultato {
+  font-size: 1.3rem;
   font-weight: bold;
-  font-size: 1.2rem;
-  color: #00d2ff;
-  margin-bottom: 5px;
+  color: var(--accent-cyan, #00c6ff);
+  margin-bottom: 2px;
 }
 
 .match-vs-text {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--text-muted, #A0AEC0);
+  letter-spacing: 1px;
+}
+
+/* Piè di pagina della card (Luogo) */
+.partita-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 10px;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* OTTIMIZZAZIONE SMARTPHONE:
+   Su telefoni molto stretti, incolonniamo le squadre per non farle stringere troppo */
+@media (max-width: 480px) {
+  .partita-teams-line {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .partita-team, 
+  .match-status-or-score {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+  
+  .match-status-or-score {
+    order: 2; /* Mette il VS o il Risultato in mezzo verticalmente tra le due squadre */
+  }
+}
+/* Contenitore e stile per il menu a tendina */
+.filter-select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filter-select-label {
+  font-size: 0.9rem;
+  color: var(--text-muted, #94a3b8);
+  font-weight: bold;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 12px 16px;
+  background: #2d3d54;
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  border-radius: 8px;
+  color: white;
   font-size: 1rem;
   font-weight: bold;
-  color: #EE6730;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  /* Rende l'aspetto uniforme su iOS/Safari */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Aggiunge una freccetta personalizzata a destra */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px; 
+}
+
+.filter-select:focus {
+  border-color: var(--accent-cyan, #00c6ff);
+  box-shadow: 0 0 8px rgba(0, 198, 255, 0.2);
+}
+
+/* Stile per le singole opzioni dentro il menu (supportato da molti browser) */
+.filter-select option {
+  background: #1a2536;
+  color: white;
+  padding: 10px;
 }
 
 /* ==========================================================================
@@ -1006,12 +1137,25 @@ code {
 .admin-box {
   width: 100%;
   max-width: 500px;
-  background: #1a2536;
+  background: var(--dark-blue, #1a2536);
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 180, 216, 0.2);
 }
 
+.admin-box h2 {
+  color: var(--accent-cyan, #00c6ff);
+  margin-bottom: 5px;
+}
+
+.admin-box p {
+  color: var(--text-muted, #94a3b8);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+/* Tab di navigazione */
 .admin-tabs {
   display: flex;
   gap: 10px;
@@ -1020,36 +1164,41 @@ code {
 
 .tab-btn {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   background: #2d3d54;
   border: none;
   color: #94a3b8;
   cursor: pointer;
   border-radius: 6px;
   font-weight: bold;
+  transition: all 0.2s ease;
 }
 
 .tab-btn.active {
-  background: #00c6ff;
-  color: white;
+  background: var(--accent-cyan, #00c6ff);
+  color: var(--primary-blue, #0f172a);
 }
 
+/* Form e Campi di Input */
 .admin-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
   text-align: left;
 }
 
 .admin-form label {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #94a3b8;
-  margin-bottom: -4px;
+  font-weight: 600;
+  margin-bottom: -5px;
 }
 
 .admin-form input,
 .admin-form textarea,
 .admin-form select {
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px;
   background: #2d3d54;
   border: 1px solid #3a506b;
@@ -1058,22 +1207,92 @@ code {
   font-size: 1rem;
 }
 
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+  outline: none;
+  border-color: var(--accent-cyan, #00c6ff);
+}
+
+/* Gestione griglia a due colonne */
 .form-row {
   display: flex;
   gap: 15px;
+  width: 100%;
 }
 
-.form-row>div {
+.form-row > div {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
-.admin-message {
+/* Checkbox Comunicazione Importante */
+.admin-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+  background: rgba(239, 68, 68, 0.08); /* Sfondo leggero rosso per evidenziarla */
   padding: 10px;
+  border-radius: 6px;
+  border: 1px dashed rgba(239, 68, 68, 0.3);
+}
+
+.admin-checkbox-wrapper input[type="checkbox"] {
+  width: auto !important;
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+}
+
+.admin-checkbox-wrapper label {
+  cursor: pointer;
+  margin: 0 !important;
+  color: #ef4444 !important;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Pulsante invio modulo */
+.admin-form button[type="submit"] {
+  margin-top: 10px;
+  padding: 14px;
+  background: var(--accent-cyan, #00c6ff);
+  color: var(--primary-blue, #0f172a);
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-form button[type="submit"]:hover:not(:disabled) {
+  background: var(--accent-cyan-hover, #00b4d8);
+}
+
+.admin-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Messaggi di feedback (successo/errore) */
+.admin-message {
+  padding: 12px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 6px;
   text-align: center;
   font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+/* Ottimizzazione Mobile */
+@media (max-width: 480px) {
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
 }

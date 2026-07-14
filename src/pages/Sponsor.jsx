@@ -87,7 +87,6 @@ export default function Sponsor() {
           <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', flexWrap: 'wrap' }}>
             <span style={{ display: 'inline-block', lineHeight: '1' }}>💙</span>
             <span>Amici dei Dolphins</span>
-            <span style={{ display: 'inline-block', lineHeight: '1' }}>🤍</span>
           </h3>
         </div>
         <p className="section-subtitle">Le attività del territorio che offrono vantaggi esclusivi ai nostri tesserati.</p>
