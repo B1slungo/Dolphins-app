@@ -187,7 +187,7 @@ export default function Admin() {
                 <label>Categoria (Tag)</label>
                 <input 
                   type="text" 
-                  placeholder="Es. Eventi, Avviso..." 
+                  placeholder="Es. Eventi, Comunicato, Avviso..." 
                   value={newsCategoria} 
                   onChange={(e) => setNewsCategoria(e.target.value)} 
                   required 

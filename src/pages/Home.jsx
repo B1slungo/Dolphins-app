@@ -1,11 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../supabaseClient';
 
 export default function Home() {
   const navigate = useNavigate();
+  const [newsImportante, setNewsImportante] = useState(null);
+  const [isAlertVisible, setIsAlertVisible] = useState(true);
+
+  // Recupera l'avviso importante da Supabase
+  useEffect(() => {
+    async function caricaNewsInEvidenza() {
+      try {
+        const { data, error } = await supabase
+          .from('news')
+          .select('*')
+          .eq('importante', true)
+          .order('data_pubblicazione', { ascending: false })
+          .limit(1);
+
+        if (error) throw error;
+        if (data && data.length > 0) {
+          setNewsImportante(data[0]);
+        }
+      } catch (error) {
+        console.error("Errore nel caricamento della news in evidenza:", error.message);
+      }
+    }
+
+    caricaNewsInEvidenza();
+  }, []);
 
   return (
     <div className="home-page">
+      
+      {/* BOX AVVISO IMPORTANTE IN CIMA */}
+      {newsImportante && isAlertVisible && (
+        <div className="urgent-alert-box">
+          <div className="urgent-alert-header">
+            <div className="urgent-alert-badge">
+              <span className="bell-ring">🔔</span> COMUNICAZIONE IMPORTANTE
+            </div>
+            <button 
+              className="urgent-close-btn" 
+              onClick={() => setIsAlertVisible(false)}
+              title="Chiudi avviso"
+            >
+              ×
+            </button>
+          </div>
+          <div className="urgent-alert-body">
+            <h3 className="urgent-alert-title">{newsImportante.titolo}</h3>
+            <p className="urgent-alert-text">{newsImportante.contenuto}</p>
+          </div>
+        </div>
+      )}
+
       {/* Sezione di Benvenuto principale */}
       <section className="hero-section">
         <div className="hero-content">

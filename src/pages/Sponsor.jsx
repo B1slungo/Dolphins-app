@@ -53,11 +53,7 @@ export default function Sponsor() {
           </h3>
         </div>
         <p className="section-subtitle">I partner principali che sostengono il progetto Dolphins con massima energia.</p>
-
-        {/* ... qui sotto rimane il tuo ciclo sponsorGold.map ... */}
       </div>
-
-
 
       <div className="sponsor-grid">
         {sponsorGold.length === 0 ? (
@@ -75,7 +71,21 @@ export default function Sponsor() {
               <h4>{s.nome}</h4>
               {s.sconto && <div className="discount-tag">{s.sconto}</div>}
               {s.descrizione && <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '10px 0' }}>{s.descrizione}</p>}
-              {s.indirizzo && <span className="sponsor-address">📍 {s.indirizzo}</span>}
+              
+              {/* INDIRIZZO CLICCABILE MAPS PER SPONSOR GOLD */}
+              {s.indirizzo && (
+                <span className="sponsor-address">
+                  📍{' '}
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.indirizzo + ' Riccione')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="maps-link"
+                  >
+                    {s.indirizzo}
+                  </a>
+                </span>
+              )}
             </div>
           ))
         )}
@@ -84,14 +94,12 @@ export default function Sponsor() {
       {/* ================= SEZIONE AMICI DEI DOLPHINS ================= */}
       <div className="sponsor-section">
         <div className="section-title-wrapper">
-          <h3 style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', flexWrap: 'wrap' }}>
+          <h3 style={{ marginTop: '55px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '12px', flexWrap: 'wrap' }}>
             <span style={{ display: 'inline-block', lineHeight: '1' }}>💙</span>
             <span>Amici dei Dolphins</span>
           </h3>
         </div>
         <p className="section-subtitle">Le attività del territorio che offrono vantaggi esclusivi ai nostri tesserati.</p>
-
-        {/* ... qui sotto rimane il tuo ciclo sponsorStandard.map ... */}
       </div>
 
       <div className="sponsor-grid">
@@ -110,11 +118,25 @@ export default function Sponsor() {
               <h4>{s.nome}</h4>
               {s.sconto && <div className="discount-tag">{s.sconto}</div>}
               {s.descrizione && <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '10px 0' }}>{s.descrizione}</p>}
-              {s.indirizzo && <span className="sponsor-address">📍 {s.indirizzo}</span>}
+              
+              {/* INDIRIZZO CLICCABILE MAPS PER SPONSOR STANDARD */}
+              {s.indirizzo && (
+                <span className="sponsor-address">
+                  📍{' '}
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.indirizzo + ' Riccione')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="maps-link"
+                  >
+                    {s.indirizzo}
+                  </a>
+                </span>
+              )}
             </div>
           ))
         )}
       </div>
-    </div >
+    </div>
   );
 }

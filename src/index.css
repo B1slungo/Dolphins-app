@@ -310,6 +310,16 @@ code {
   display: block;
   margin-top: auto;
 }
+.maps-link {
+  color: var(--accent-cyan, #00c6ff);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.maps-link:hover {
+  color: #008cb3;
+}
 
 /* ==========================================================================
    5. PAGINA CARD DIGITALE
@@ -1332,4 +1342,97 @@ code {
     flex-direction: column;
     gap: 15px;
   }
+}
+/* ==========================================================================
+   12. BOX NOTIFICHE / AVVISI IMPORTANTI IN HOME
+   ========================================================================== */
+.urgent-alert-box {
+  background: rgba(239, 68, 68, 0.1); /* Sfondo rosso scuro trasparente */
+  border: 1px solid #ef4444;
+  border-left: 5px solid #ef4444; /* Barra rossa spessa sul lato sinistro */
+  border-radius: 8px;
+  padding: 16px;
+  margin: 15px auto 25px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
+  animation: slideInDown 0.4s ease-out;
+}
+
+.urgent-alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.urgent-alert-badge {
+  color: #ef4444;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Animazione campana che dondola */
+.bell-ring {
+  display: inline-block;
+  animation: ringBell 2s ease infinite;
+}
+
+.urgent-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 5px;
+  transition: color 0.2s;
+}
+
+.urgent-close-btn:hover {
+  color: #ef4444;
+}
+
+.urgent-alert-body {
+  text-align: left;
+}
+
+.urgent-alert-title {
+  color: white;
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.urgent-alert-text {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.4;
+  white-space: pre-line; /* Mantiene gli a capo del testo inserito nell'admin */
+}
+
+/* ANIMAZIONI */
+@keyframes slideInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes ringBell {
+  0%, 100% { transform: rotate(0); }
+  10% { transform: rotate(15deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(10deg); }
+  40% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  60% { transform: rotate(0); }
 }
