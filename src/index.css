@@ -649,13 +649,16 @@ code {
 }
 
 .btn-secondary {
-  background: transparent;
-  border: 1px solid #ef4444 !important;
-  color: #ef4444;
+  background-color: #ef4444 !important;
+  color: black !important;
+  border: none !important;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3) !important;
+  transition: background 0.2s ease;
 }
 
 .btn-secondary:hover {
-  background: rgba(239, 68, 68, 0.1);
+  background-color: #dc2626 !important;
+  box-shadow: 0 6px 15px rgba(239, 68, 68, 0.5) !important;
 }
 
 .auth-message {
