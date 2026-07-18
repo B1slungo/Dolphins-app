@@ -65,10 +65,10 @@ export default function Home() {
             scopri gli sconti dedicati e resta aggiornato sulla stagione.
           </p>
           <div className="hero-buttons">
-            <button className="btn-primary" onClick={() => navigate('/card')}>
+            <button className="btn-primary-home" onClick={() => navigate('/card')}>
               Mostra la tua Card 🪪
             </button>
-            <button className="btn-secondary" onClick={() => navigate('/login')}>
+            <button className="btn-secondary-home" onClick={() => navigate('/login')}>
               Accedi / Registrati 👤
             </button>
           </div>

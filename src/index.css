@@ -789,8 +789,8 @@ code {
   gap: 15px;
 }
 
-.btn-primary,
-.btn-secondary {
+.btn-primary-home,
+.btn-secondary-home {
   padding: 14px 28px;
   border-radius: 8px;
   font-size: 1rem;
@@ -799,24 +799,24 @@ code {
   transition: all 0.2s ease;
 }
 
-.btn-primary {
+.btn-primary-home {
   background: var(--accent-cyan);
   color: var(--primary-blue);
   border: none;
 }
 
-.btn-primary:hover {
+.btn-primary-home:hover {
   background: var(--accent-cyan-hover);
   transform: translateY(-2px);
 }
 
-.btn-secondary {
+.btn-secondary-home {
   background: transparent;
   color: #ffffff;
   border: 2px solid #3a506b;
 }
 
-.btn-secondary:hover {
+.btn-secondary-home:hover {
   border-color: var(--accent-cyan);
   background: rgba(0, 180, 216, 0.05);
 }
