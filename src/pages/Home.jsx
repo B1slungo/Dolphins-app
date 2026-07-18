@@ -100,6 +100,58 @@ export default function Home() {
           <h3>Comunicati & Novità</h3>
           <p>Rimani sempre aggiornato su eventi, comunicati ufficiali e novità del mondo Dolphins Riccione.</p>
         </div>
+        </section>
+
+        {/*=============================================== 
+           NUOVA SEZIONE: LINK RAPIDI IN FONDO ALLA HOME 
+          =============================================== */}
+      <section className="quick-links-section">
+        <h3 className="quick-links-title">Link Rapidi & Utili</h3>
+        <div className="quick-links-container">
+          
+          {/* Link 1: WhatsApp Segreteria (Sostituisci il numero con quello reale se vuoi) */}
+          <a 
+            href="https://chat.whatsapp.com/DMtj9JHEy0wClXe31TVa9h?s=cl&p=a&ilr=4&amv=2" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="quick-link-item"
+          >
+            <span className="quick-link-icon">💬</span>
+            <div className="quick-link-text">
+              <h4>Scrivi alla Segreteria</h4>
+              <p>Entra nel gruppo WhatsApp della Segreteria dei Dolphins per dubbi o domande, Massimo 1 genitore per famiglia.</p>
+            </div>
+          </a>
+
+          {/* Link 2: Modulo Visita Medica o Iscrizione */}
+          <a 
+            href="https://www.facebook.com/share/14iBTDHrDuw/"
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="quick-link-item"
+          >
+            <span className="quick-link-icon">📘</span>
+            <div className="quick-link-text">
+              <h4>Facebook Dolphins</h4>
+              <p>Seguici per non perderti tutte le novità</p>
+            </div>
+          </a>
+
+          {/* Link 3: Instagram Ufficiale */}
+          <a 
+            href="https://www.instagram.com/dolphinsbasketriccione?igsh=Z3lnNjR3aHNtZzN3" // Inserisci il link al vostro profilo
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="quick-link-item"
+          >
+            <span className="quick-link-icon">📸</span>
+            <div className="quick-link-text">
+              <h4>Instagram Dolphins</h4>
+              <p>Seguici per foto e storie live</p>
+            </div>
+          </a>
+
+    </div>
       </section>
     </div>
   );
