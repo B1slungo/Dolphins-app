@@ -509,8 +509,17 @@ code {
 }
 
 /* ==========================================================================
-   6. SCHERMATA DI LOGIN / REGISTRAZIONE
+   6. SCHERMATA DI LOGIN / REGISTRAZIONE & DASHBOARD PROFILO
    ========================================================================== */
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+}
+
 .login-box {
   background: var(--dark-blue);
   padding: 40px;
@@ -539,8 +548,9 @@ code {
   gap: 15px;
 }
 
-/* Input generali e allineamento ereditato per il box password */
+/* Input generali e allineamento per il box password */
 .login-form input,
+.login-form select,
 .password-container input {
   width: 100%;
   box-sizing: border-box;
@@ -553,6 +563,7 @@ code {
 }
 
 .login-form input:focus,
+.login-form select:focus,
 .password-container input:focus {
   outline: none;
   border-color: var(--accent-cyan);
@@ -565,8 +576,7 @@ code {
 }
 
 .password-container input {
-  padding-right: 45px;
-  /* Spazio a destra per non far sovrapporre i pallini all'occhio */
+  padding-right: 45px; /* Spazio a destra per non far sovrapporre i pallini all'occhio */
 }
 
 /* Bottone dell'occhio sopra l'input */
@@ -583,43 +593,81 @@ code {
   padding: 5px;
   display: flex;
   align-items: center;
-  /* Corretto da camelCase a sintassi CSS standard */
   justify-content: center;
 }
 
 .toggle-password-btn:hover {
   color: var(--accent-cyan);
-  /* Usa la variabile del tuo tema invece dell'hex fisso */
 }
 
-/* Pulsante principale di invio form */
-.login-form button[type="submit"] {
+/* Pulsanti dell'interfaccia */
+.login-form button[type="submit"],
+.profile-actions button {
   padding: 12px;
-  background: var(--accent-cyan);
-  color: var(--primary-blue);
-  border: none;
-  border-radius: 6px;
   font-size: 1rem;
   font-weight: bold;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
   width: 100%;
+}
+
+.login-form button[type="submit"] {
+  background: var(--accent-cyan);
+  color: var(--primary-blue);
+  margin-top: 10px;
 }
 
 .login-form button[type="submit"]:hover {
   background: var(--accent-cyan-hover);
 }
 
+.btn-primary {
+  background: var(--accent-cyan);
+  color: var(--primary-blue);
+}
+
+.btn-primary:hover {
+  background: var(--accent-cyan-hover);
+}
+
+/* Bottone Admin Speciale */
+.btn-admin {
+  background: #f59e0b;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+}
+
+.btn-admin:hover {
+  background: #d97706;
+  box-shadow: 0 6px 15px rgba(245, 158, 11, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #ef4444 !important;
+  color: #ef4444;
+}
+
+.btn-secondary:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
 .auth-message {
   margin-top: 15px;
-  color: var(--success);
+  color: var(--accent-cyan);
   font-size: 0.9rem;
 }
 
 .switch-btn {
   background: none;
   border: none;
-  color: var(--text-dark);
+  color: var(--text-dark, #94a3b8);
   margin-top: 20px;
   cursor: pointer;
   font-size: 0.85rem;
@@ -629,6 +677,8 @@ code {
 .switch-btn:hover {
   color: var(--accent-cyan);
 }
+
+/* Dashboard del Profilo Loggato */
 .profile-dashboard {
   text-align: center;
   padding: 10px 5px;
@@ -658,7 +708,8 @@ code {
   color: white;
 }
 
-.profile-team, .profile-card-number {
+.profile-team, 
+.profile-card-number {
   margin: 6px 0;
   font-size: 1rem;
   color: #94a3b8;
@@ -678,6 +729,12 @@ code {
   margin-bottom: 15px;
 }
 
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
 /* ==========================================================================
    7. PAGINA HOME
    ========================================================================== */

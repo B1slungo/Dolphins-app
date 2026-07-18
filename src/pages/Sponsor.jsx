@@ -29,7 +29,7 @@ export default function Sponsor() {
     return <div style={{ color: 'white', textAlign: 'center', marginTop: '50px' }}>Caricamento partner... 🤝</div>;
   }
 
-  // Ora usiamo il nome corretto della colonna: is_gold
+  // Filtro degli sponsor in base alla categoria
   const sponsorGold = sponsor.filter(s => s.is_gold === true || s.is_gold === 'true' || s.is_gold === 1);
   const sponsorStandard = sponsor.filter(s => !s.is_gold || s.is_gold === false || s.is_gold === 'false' || s.is_gold === 0);
 
@@ -72,17 +72,21 @@ export default function Sponsor() {
               {s.sconto && <div className="discount-tag">{s.sconto}</div>}
               {s.descrizione && <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '10px 0' }}>{s.descrizione}</p>}
               
-              {/* INDIRIZZO CLICCABILE MAPS PER SPONSOR GOLD */}
+              {/* INDIRIZZO O SITO WEB CLICCABILE PER SPONSOR GOLD */}
               {s.indirizzo && (
                 <span className="sponsor-address">
-                  📍{' '}
+                  {s.indirizzo.startsWith('http') ? '🌐 ' : '📍 '}
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.indirizzo + ' Riccione')}`}
+                    href={
+                      s.indirizzo.startsWith('http')
+                        ? s.indirizzo
+                        : `http://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.indirizzo + ' Riccione')}`
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="maps-link"
                   >
-                    {s.indirizzo}
+                    {s.indirizzo.startsWith('http') ? 'Visita il sito web' : s.indirizzo}
                   </a>
                 </span>
               )}
@@ -119,17 +123,21 @@ export default function Sponsor() {
               {s.sconto && <div className="discount-tag">{s.sconto}</div>}
               {s.descrizione && <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '10px 0' }}>{s.descrizione}</p>}
               
-              {/* INDIRIZZO CLICCABILE MAPS PER SPONSOR STANDARD */}
+              {/* INDIRIZZO O SITO WEB CLICCABILE PER SPONSOR STANDARD */}
               {s.indirizzo && (
                 <span className="sponsor-address">
-                  📍{' '}
+                  {s.indirizzo.startsWith('http') ? '🌐 ' : '📍 '}
                   <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.indirizzo + ' Riccione')}`}
+                    href={
+                      s.indirizzo.startsWith('http')
+                        ? s.indirizzo
+                        : `http://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.indirizzo + ' Riccione')}`
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="maps-link"
                   >
-                    {s.indirizzo}
+                    {s.indirizzo.startsWith('http') ? 'Visita il sito web' : s.indirizzo}
                   </a>
                 </span>
               )}

@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
+// Inserisci qui le email abilitate ad accedere al pannello di controllo
+const ADMIN_EMAILS = [
+  'isaacvillaa4@gmail.com', 
+  'barosi85@libero.it'
+];
+
 export default function Login() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -12,7 +18,6 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // Campi aggiuntivi per la registrazione dell'atleta
   const [nome, setNome] = useState('');
   const [cognome, setCognome] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -20,9 +25,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  // CONTROLLA LO STATO DELL'UTENTE AL CARICAMENTO
   useEffect(() => {
-    // 1. Prendi la sessione attuale
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
         setUser(session.user);
@@ -30,7 +33,6 @@ export default function Login() {
       }
     });
 
-    // 2. Ascolta i cambi di stato (login/logout)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         setUser(session.user);
@@ -44,7 +46,6 @@ export default function Login() {
     return () => subscription.unsubscribe();
   }, []);
 
-  // FUNZIONE PER CARICARE I DATI DELL'ATLETA DAL DB
   const caricaProfiloAtleta = async (userId) => {
     try {
       const { data, error } = await supabase
@@ -60,7 +61,6 @@ export default function Login() {
     }
   };
 
-  // GESTIONE LOGIN E REGISTRAZIONE
   const handleAuth = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -107,7 +107,6 @@ export default function Login() {
     }
   };
 
-  // GESTIONE LOGOUT
   const handleLogout = async () => {
     setLoading(true);
     try {
@@ -126,11 +125,13 @@ export default function Login() {
     }
   };
 
+  const isAdmin = user && ADMIN_EMAILS.includes(user.email?.toLowerCase());
+
   return (
     <div className="login-page">
       <div className="login-box">
         
-        {/* VISTA 1: L'UTENTE È GIÀ LOGGATO (MOSTRA IL SUO PROFILO) */}
+        {/* VISTA A: UTENTE LOGGATO */}
         {user ? (
           <div className="profile-dashboard">
             <span className="profile-avatar">🐬</span>
@@ -148,24 +149,25 @@ export default function Login() {
 
             <p className="profile-email-sub">Account collegato: {user.email}</p>
 
-            <div className="profile-actions" style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
-              <button className="btn-primary" onClick={() => navigate('/card')} style={{ width: '100%' }}>
+            <div className="profile-actions">
+              <button className="btn-primary" onClick={() => navigate('/card')}>
                 Apri la tua Card Digitale 🪪
               </button>
               
-              <button 
-                className="btn-secondary" 
-                onClick={handleLogout} 
-                disabled={loading}
-                style={{ width: '100%', borderColor: '#ef4444', color: '#ef4444', background: 'transparent' }}
-              >
+              {isAdmin && (
+                <button className="btn-admin" onClick={() => navigate('/admin')}>
+                  Pannello Admin 🛠️
+                </button>
+              )}
+              
+              <button className="btn-secondary" onClick={handleLogout} disabled={loading}>
                 {loading ? 'Disconnessione...' : 'Disconnetti Account 🚪'}
               </button>
             </div>
           </div>
         ) : (
           
-          /* VISTA 2: L'UTENTE NON È LOGGATO (MOSTRA FORM ACCEDI / REGISTRATI) */
+          /* VISTA B: FORM ACCEDI / REGISTRATI */
           <>
             <h2>{isRegistering ? 'Diventa un Dolphin 🐬' : 'Accedi alla card'}</h2>
             <p>{isRegistering ? 'Crea il tuo profilo atleta' : 'Inserisci le tue credenziali per vedere la tua Card'}</p>
@@ -179,22 +181,7 @@ export default function Login() {
                   <label style={{ textAlign: 'left', display: 'block', color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '4px' }}>
                     Categoria / Squadra del giocatore
                   </label>
-                  <select
-                    value={categoria}
-                    onChange={(e) => setCategoria(e.target.value)}
-                    required
-                    style={{
-                      padding: '12px 15px',
-                      background: 'var(--primary-blue, #1e293b)',
-                      border: '1px solid #3a506b',
-                      borderRadius: '6px',
-                      color: 'white',
-                      fontSize: '1rem',
-                      width: '100%',
-                      boxSizing: 'border-box',
-                      marginBottom: '10px'
-                    }}
-                  >
+                  <select value={categoria} onChange={(e) => setCategoria(e.target.value)} required>
                     <option value="" disabled>Seleziona la squadra del giocatore...</option>
                     <option value="Minibasket">Minibasket 🧸</option>
                     <option value="Esordienti">Esordienti 🏀</option>
@@ -211,7 +198,7 @@ export default function Login() {
 
               <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
               
-              <div className="password-container" style={{ position: 'relative' }}>
+              <div className="password-container">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
@@ -229,14 +216,14 @@ export default function Login() {
                 </button>
               </div>
 
-              <button type="submit" disabled={loading} style={{ width: '100%', marginTop: '10px' }}>
+              <button type="submit" disabled={loading}>
                 {loading ? 'Elaborazione...' : isRegistering ? 'Registrati' : 'Accedi'}
               </button>
             </form>
 
-            {message && <p className="auth-message" style={{ marginTop: '15px', color: '#00c6ff' }}>{message}</p>}
+            {message && <p className="auth-message">{message}</p>}
 
-            <button className="switch-btn" onClick={() => setIsRegistering(!isRegistering)} style={{ marginTop: '15px', background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', textDecoration: 'underline' }}>
+            <button className="switch-btn" onClick={() => setIsRegistering(!isRegistering)}>
               {isRegistering ? 'Hai già un account? Accedi' : 'Nuovo atleta? Registrati qui'}
             </button>
           </>
