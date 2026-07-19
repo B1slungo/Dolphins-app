@@ -569,6 +569,19 @@ code {
   border-color: var(--accent-cyan);
 }
 
+/* Box di avviso specifico per la registrazione dei genitori */
+.register-alert-box {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #fbbf24;
+  line-height: 1.4;
+}
+
 /* Contenitore specifico per l'input password + occhietto */
 .password-container {
   position: relative;
@@ -648,9 +661,10 @@ code {
   box-shadow: 0 6px 15px rgba(245, 158, 11, 0.5);
 }
 
+/* Bottone Disconnetti Account (Rosso pieno fisso) */
 .btn-secondary {
   background-color: #ef4444 !important;
-  color: black !important;
+  color: white !important; /* Ripristinato in bianco per massima leggibilità */
   border: none !important;
   box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3) !important;
   transition: background 0.2s ease;
@@ -711,33 +725,7 @@ code {
   color: white;
 }
 
-.profile-team, 
-.profile-card-number {
-  margin: 6px 0;
-  font-size: 1rem;
-  color: #94a3b8;
-}
-
-.profile-card-number code {
-  background: #0f172a;
-  padding: 3px 8px;
-  border-radius: 4px;
-  color: #00c6ff;
-  font-family: monospace;
-}
-
-.profile-email-sub {
-  font-size: 0.8rem;
-  color: #64748b;
-  margin-bottom: 15px;
-}
-
-.profile-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
-}
+.profile-team,
 /* ==========================================================================
    7. PAGINA HOME
    ========================================================================== */

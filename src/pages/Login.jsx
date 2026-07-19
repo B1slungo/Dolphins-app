@@ -172,11 +172,18 @@ export default function Login() {
             <h2>{isRegistering ? 'Diventa un Dolphin 🐬' : 'Accedi alla card'}</h2>
             <p>{isRegistering ? 'Crea il tuo profilo atleta' : 'Inserisci le tue credenziali per vedere la tua Card'}</p>
 
+            {/* MESSAGGIO INFORMATIVO PER I GENITORI */}
+            {isRegistering && (
+              <div className="register-alert-box">
+                ⚠️ <strong>Attenzione Genitori:</strong> Registrate l'account inserendo il <strong>Nome e Cognome del figlio</strong> tesserato, non il vostro. Servirà per generare correttamente la sua tessera digitale.
+              </div>
+            )}
+
             <form onSubmit={handleAuth} className="login-form">
               {isRegistering && (
                 <>
-                  <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
-                  <input type="text" placeholder="Cognome" value={cognome} onChange={(e) => setCognome(e.target.value)} required />
+                  <input type="text" placeholder="Nome atleta" value={nome} onChange={(e) => setNome(e.target.value)} required />
+                  <input type="text" placeholder="Cognome atleta" value={cognome} onChange={(e) => setCognome(e.target.value)} required />
 
                   <label style={{ textAlign: 'left', display: 'block', color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '4px' }}>
                     Categoria / Squadra del giocatore

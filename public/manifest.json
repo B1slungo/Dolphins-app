@@ -1,0 +1,21 @@
+{
+  "short_name": "Dolphins Card",
+  "name": "Dolphins Riccione - Card Digitale",
+  "icons": [
+    {
+      "src": "/Logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/Logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#0f172a",
+  "theme_color": "#00b4d8",
+  "display": "standalone",
+  "orientation": "portrait"
+}
