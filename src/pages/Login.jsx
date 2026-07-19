@@ -25,6 +25,10 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
+  // Stati per gestire l'evento di installazione PWA (Punto 2)
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [showInstallBtn, setShowInstallBtn] = useState(false);
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
@@ -43,7 +47,19 @@ export default function Login() {
       }
     });
 
-    return () => subscription.unsubscribe();
+    // Ascolta l'evento prima che il browser mostri il prompt automatico
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallBtn(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      subscription.unsubscribe();
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
   }, []);
 
   const caricaProfiloAtleta = async (userId) => {
@@ -125,6 +141,16 @@ export default function Login() {
     }
   };
 
+  // Funzione per attivare l'installazione PWA al click del bottone
+  const handleInstallApp = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Risultato installazione: ${outcome}`);
+    setDeferredPrompt(null);
+    setShowInstallBtn(false);
+  };
+
   const isAdmin = user && ADMIN_EMAILS.includes(user.email?.toLowerCase());
 
   return (
@@ -171,6 +197,26 @@ export default function Login() {
           <>
             <h2>{isRegistering ? 'Diventa un Dolphin 🐬' : 'Accedi alla card'}</h2>
             <p>{isRegistering ? 'Crea il tuo profilo atleta' : 'Inserisci le tue credenziali per vedere la tua Card'}</p>
+
+            {/* BOTTONE DI INSTALLAZIONE PWA (Punto 2) */}
+            {showInstallBtn && (
+              <button 
+                onClick={handleInstallApp}
+                style={{
+                  background: 'var(--accent-cyan)',
+                  color: 'var(--primary-blue)',
+                  padding: '12px',
+                  borderRadius: '8px',
+                  fontWeight: 'bold',
+                  marginBottom: '20px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  width: '100%'
+                }}
+              >
+                📲 Installa l'App dei Dolphins!
+              </button>
+            )}
 
             {/* MESSAGGIO INFORMATIVO PER I GENITORI */}
             {isRegistering && (
