@@ -582,6 +582,24 @@ code {
   line-height: 1.4;
 }
 
+/* Bottone di installazione PWA personalizzato */
+.btn-install-pwa {
+  background: var(--accent-cyan);
+  color: var(--primary-blue);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s ease;
+}
+
+.btn-install-pwa:hover {
+  background: var(--accent-cyan-hover);
+}
+
 /* Contenitore specifico per l'input password + occhietto */
 .password-container {
   position: relative;
@@ -589,7 +607,7 @@ code {
 }
 
 .password-container input {
-  padding-right: 45px; /* Spazio a destra per non far sovrapporre i pallini all'occhio */
+  padding-right: 45px;
 }
 
 /* Bottone dell'occhio sopra l'input */
@@ -636,6 +654,14 @@ code {
   background: var(--accent-cyan-hover);
 }
 
+/* Spazio verticale ed elasticità tra i bottoni della Dashboard */
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Aggiunge spazio uniforme tra un pulsante e l'altro */
+  margin-top: 20px;
+}
+
 .btn-primary {
   background: var(--accent-cyan);
   color: var(--primary-blue);
@@ -664,7 +690,7 @@ code {
 /* Bottone Disconnetti Account (Rosso pieno fisso) */
 .btn-secondary {
   background-color: #ef4444 !important;
-  color: white !important; /* Ripristinato in bianco per massima leggibilità */
+  color: white !important;
   border: none !important;
   box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3) !important;
   transition: background 0.2s ease;

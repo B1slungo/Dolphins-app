@@ -3,13 +3,13 @@
   "name": "Dolphins Riccione - Card Digitale",
   "icons": [
     {
-      "src": "/Logo_centrato-192.png",
+      "src": "/Logo_NoTesto-192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "/Logo_centrato-512.png",
+      "src": "/Logo_NoTesto-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"

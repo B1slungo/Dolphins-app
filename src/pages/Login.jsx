@@ -25,7 +25,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  // Stati per gestire l'evento di installazione PWA (Punto 2)
+  // Stati per gestire l'evento di installazione PWA
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showInstallBtn, setShowInstallBtn] = useState(false);
 
@@ -198,22 +198,9 @@ export default function Login() {
             <h2>{isRegistering ? 'Diventa un Dolphin 🐬' : 'Accedi alla card'}</h2>
             <p>{isRegistering ? 'Crea il tuo profilo atleta' : 'Inserisci le tue credenziali per vedere la tua Card'}</p>
 
-            {/* BOTTONE DI INSTALLAZIONE PWA (Punto 2) */}
+            {/* BOTTONE DI INSTALLAZIONE PWA */}
             {showInstallBtn && (
-              <button 
-                onClick={handleInstallApp}
-                style={{
-                  background: 'var(--accent-cyan)',
-                  color: 'var(--primary-blue)',
-                  padding: '12px',
-                  borderRadius: '8px',
-                  fontWeight: 'bold',
-                  marginBottom: '20px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  width: '100%'
-                }}
-              >
+              <button className="btn-install-pwa" onClick={handleInstallApp}>
                 📲 Installa l'App dei Dolphins!
               </button>
             )}
